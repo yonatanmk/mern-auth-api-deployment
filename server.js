@@ -9,14 +9,14 @@ const app = express();
 
 // connect to db
 mongoose
-    .connect(process.env.DATABASE, {
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-        useCreateIndex: true
-    })
-    .then(() => console.log('DB connected'))
-    .catch(err => console.log('DB CONNECTION ERROR: ', err));
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
+  .then(() => console.log('DB connected'))
+  .catch(err => console.log('DB CONNECTION ERROR: ', err));
 
 // import routes
 const authRoutes = require('./routes/auth');
@@ -29,6 +29,13 @@ app.use(bodyParser.json());
 if ((process.env.NODE_ENV = 'development')) {
     app.use(cors({ origin: `http://localhost:3000` }));
 }
+
+// To check if server is running
+app.get('/test', (req, res) => {
+  return res.json({
+    message: `Server Is Running`
+  });
+});
 
 // middleware
 app.use('/api', authRoutes);
