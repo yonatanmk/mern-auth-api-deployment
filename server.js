@@ -26,9 +26,10 @@ const userRoutes = require('./routes/user');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 // app.use(cors()); // allows all origins
-if ((process.env.NODE_ENV = 'development')) {
-  app.use(cors({ origin: process.env.CLIENT_URL.replace(/\/$/, '') }));
-}
+// if ((process.env.NODE_ENV = 'development')) {
+//   app.use(cors({ origin: process.env.CLIENT_URL.replace(/\/$/, '') }));
+// }
+app.use(cors({ origin: process.env.CLIENT_URL.replace(/\/$/, '') }));
 
 // To check if server is running
 app.get('/test', (req, res) => {
