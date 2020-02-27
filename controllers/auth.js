@@ -260,6 +260,9 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 exports.googleLogin = (req, res) => {
     const { idToken } = req.body;
 
+    console.log('ID TOKEN')
+    console.log(idToken)
+
     client.verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID }).then(response => {
         // console.log('GOOGLE LOGIN RESPONSE', response)
         const { email_verified, name, email } = response.payload;
